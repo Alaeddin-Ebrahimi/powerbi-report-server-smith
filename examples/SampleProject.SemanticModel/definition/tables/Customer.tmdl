@@ -1,0 +1,32 @@
+/// Customer master data — one row per customer
+table Customer
+	lineageTag: customer-table-001
+
+	column CustomerKey
+		dataType: int64
+		sourceColumn: CustomerKey
+		summarizeBy: none
+		isKey: true
+		lineageTag: customer-col-001
+
+	/// Customer's full legal name
+	column CustomerName
+		dataType: string
+		sourceColumn: CustomerName
+		summarizeBy: none
+		lineageTag: customer-col-002
+
+	column City
+		dataType: string
+		sourceColumn: City
+		summarizeBy: none
+		lineageTag: customer-col-003
+
+	partition Customer = m
+		mode: import
+		source =
+				let
+					Source = Sql.Database("server", "db"),
+					Query = Source{[Schema="dbo",Item="Customer"]}[Data]
+				in
+					Query
