@@ -1,0 +1,30 @@
+/// Standard date dimension
+table Calendar
+	lineageTag: calendar-table-001
+
+	column Date
+		dataType: dateTime
+		sourceColumn: Date
+		summarizeBy: none
+		isKey: true
+		lineageTag: calendar-col-001
+
+	column Year
+		dataType: int64
+		sourceColumn: Year
+		summarizeBy: none
+		lineageTag: calendar-col-002
+
+	column MonthName
+		dataType: string
+		sourceColumn: MonthName
+		summarizeBy: none
+		lineageTag: calendar-col-003
+
+	partition Calendar = m
+		mode: import
+		source =
+				let
+					Source = Calendar.Dates()
+				in
+					Source
