@@ -1,0 +1,20 @@
+relationship 7a1f4e2c-0001-0000-0000-000000000001
+	fromColumn: Sales.CustomerKey
+	toColumn: Customer.CustomerKey
+	crossFilteringBehavior: automatic
+	fromCardinality: many
+	toCardinality: one
+
+relationship 7a1f4e2c-0002-0000-0000-000000000002
+	fromColumn: Sales.ProductKey
+	toColumn: Product.ProductKey
+	crossFilteringBehavior: automatic
+	fromCardinality: many
+	toCardinality: one
+
+relationship 7a1f4e2c-0003-0000-0000-000000000003
+	fromColumn: Sales.OrderDate
+	toColumn: Calendar.Date
+	crossFilteringBehavior: automatic
+	fromCardinality: many
+	toCardinality: one
