@@ -1,0 +1,50 @@
+table Sales
+	lineageTag: sales-table-001
+
+	column OrderDate
+		dataType: dateTime
+		sourceColumn: OrderDate
+		summarizeBy: none
+		lineageTag: sales-col-001
+
+	column CustomerKey
+		dataType: int64
+		sourceColumn: CustomerKey
+		summarizeBy: none
+		lineageTag: sales-col-002
+
+	column ProductKey
+		dataType: int64
+		sourceColumn: ProductKey
+		summarizeBy: none
+		lineageTag: sales-col-003
+
+	column Amount
+		dataType: double
+		sourceColumn: Amount
+		summarizeBy: sum
+		formatString: \$#,##0.00
+		lineageTag: sales-col-004
+
+	column Quantity
+		dataType: int64
+		sourceColumn: Quantity
+		summarizeBy: sum
+		lineageTag: sales-col-005
+
+	/// Total revenue across all orders
+	measure 'Total Sales' = SUM(Sales[Amount])
+		formatString: \$#,##0
+		lineageTag: sales-meas-001
+
+	measure 'Total Quantity' = SUM(Sales[Quantity])
+		lineageTag: sales-meas-002
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+					Source = Sql.Database("server", "db"),
+					Query = Source{[Schema="dbo",Item="Sales"]}[Data]
+				in
+					Query
