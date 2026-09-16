@@ -1,0 +1,30 @@
+table Product
+	lineageTag: product-table-001
+
+	column ProductKey
+		dataType: int64
+		sourceColumn: ProductKey
+		summarizeBy: none
+		isKey: true
+		lineageTag: product-col-001
+
+	column prod_nm
+		dataType: string
+		sourceColumn: prod_nm
+		summarizeBy: none
+		lineageTag: product-col-002
+
+	column Category
+		dataType: string
+		sourceColumn: Category
+		summarizeBy: none
+		lineageTag: product-col-003
+
+	partition Product = m
+		mode: import
+		source =
+				let
+					Source = Sql.Database("server", "db"),
+					Query = Source{[Schema="dbo",Item="Product"]}[Data]
+				in
+					Query
