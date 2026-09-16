@@ -1,0 +1,7 @@
+mcp>=1.0.0
+pyyaml>=6.0
+requests>=2.28
+
+# Only needed for the pbirs_* tools (Power BI Report Server deployment).
+# Comment this out if you're not using that layer yet.
+requests_ntlm2>=1.0
