@@ -1,0 +1,23 @@
+# Editable naming/audit policy. Defaults match common Power BI naming
+# conventions (PascalCase / Title Case, no underscores, no raw abbreviations).
+# Override any of these; unset keys fall back to the built-in defaults.
+
+naming_rules:
+  no_underscores: true
+  must_start_uppercase: true
+  no_all_lowercase: true
+  max_consecutive_uppercase: 4   # allows acronyms like "ID"/"URL", flags "CUSTNM"
+
+# Default group names used by the staging workflow. Change these if your team
+# uses different conventions (e.g. "Bronze"/"Silver"/"Gold" instead of
+# "Staging"/"Dim"/"Fact").
+workflow:
+  staging_group_name: "Staging"
+  default_groups:
+    - "Dim"
+    - "Fact"
+
+# Safety defaults
+safety:
+  read_only: false        # set true to block every write tool
+  require_audit_pass_to_promote: true   # can be overridden per-call with force=True
