@@ -1,0 +1,29 @@
+[project]
+name = "powerbi-report-server-smith"
+version = "0.1.0"
+description = "MCP server: Power BI model quality audit, staging/Dim/Fact workflow, relationships, AI-readiness, and Power BI Report Server deployment."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Ala (Data With Ala)", email = "ebrahimy.alaeddin@ebrahimy" }
+]
+
+dependencies = [
+    "mcp>=1.0.0",
+    "pyyaml>=6.0",
+    "requests>=2.28",
+]
+
+[project.optional-dependencies]
+pbirs = ["requests_ntlm2>=1.0"]
+
+[project.scripts]
+powerbi-report-server-smith = "powerbi_report_server_smith.server:main"
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
