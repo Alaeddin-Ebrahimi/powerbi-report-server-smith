@@ -1,0 +1,17 @@
+table Notes
+	lineageTag: notes-table-001
+
+	column Comment
+		dataType: string
+		sourceColumn: Comment
+		summarizeBy: none
+		lineageTag: notes-col-001
+
+	partition Notes = m
+		mode: import
+		source =
+				let
+					Source = Sql.Database("server", "db"),
+					Query = Source{[Schema="dbo",Item="Notes"]}[Data]
+				in
+					Query
