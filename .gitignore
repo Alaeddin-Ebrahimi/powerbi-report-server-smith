@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+dist/
+build/
+
+# Per-project sidecar workflow state — usually fine to keep out of source
+# control since it's local bookkeeping, but remove this line if your team
+# wants to share/commit staging state.
+.pbirs_smith/
